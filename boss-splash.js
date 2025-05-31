@@ -1,10 +1,10 @@
 Hooks.once("init", async function () {
-  console.log("Boss Splash init - Registrering Socket");
-  game.socket.on("module.boss-splash", (data) => {
+  console.log("Cutscene Text init - Registrering Socket");
+  game.socket.on("module.cutscene-text", (data) => {
     displayBossOverlay(data);
   });
 
-  game.bossSplash = {
+  game.cutsceneText = {
     splashBoss: splashBoss,
     emiteBoss: splashBoss,
     bossOverlay: BossSplashOverlay,
@@ -14,15 +14,15 @@ Hooks.once("init", async function () {
   //Register settings
 
   const permissionLevels = [
-    game.i18n.localize("SETTINGS.BossSplashPermission.Player"),
-    game.i18n.localize("SETTINGS.BossSplashPermission.Trusted"),
-    game.i18n.localize("SETTINGS.BossSplashPermission.Assistant"),
-    game.i18n.localize("SETTINGS.BossSplashPermission.GM"),
+    game.i18n.localize("SETTINGS.CutsceneTextPermission.Player"),
+    game.i18n.localize("SETTINGS.CutsceneTextPermission.Trusted"),
+    game.i18n.localize("SETTINGS.CutsceneTextPermission.Assistant"),
+    game.i18n.localize("SETTINGS.CutsceneTextPermission.GM"),
   ];
 
-  game.settings.register("boss-splash", "permissions-emit", {
-    name: "SETTINGS.BossSplashPermission.Title",
-    hint: "SETTINGS.BossSplashPermission.TitleHint",
+  game.settings.register("cutscene-text", "permissions-emit", {
+    name: "SETTINGS.CutsceneTextPermission.Title",
+    hint: "SETTINGS.CutsceneTextPermission.TitleHint",
     scope: "world",
     config: true,
     default: 3,
@@ -31,81 +31,81 @@ Hooks.once("init", async function () {
     onChange: debouncedReload,
   });
 
-  game.settings.register("boss-splash", "colorFirst", {
-    name: "SETTINGS.BossSplashColorFirst",
-    hint: "SETTINGS.BossSplashColorFirstHint",
+  game.settings.register("cutscene-text", "colorFirst", {
+    name: "SETTINGS.CutsceneTextColorFirst",
+    hint: "SETTINGS.CutsceneTextColorFirstHint",
     scope: "world",
     type: String,
     default: "#ffd502",
     config: true,
   });
 
-  game.settings.register("boss-splash", "colorFirst", {
-    name: "SETTINGS.BossSplashColorFirst",
-    hint: "SETTINGS.BossSplashColorFirstHint",
+  game.settings.register("cutscene-text", "colorFirst", {
+    name: "SETTINGS.CutsceneTextColorFirst",
+    hint: "SETTINGS.CutsceneTextColorFirstHint",
     scope: "world",
     type: String,
     default: "#ffd502",
     config: true,
   });
 
-  game.settings.register("boss-splash", "colorSecond", {
-    name: "SETTINGS.BossSplashColorSecond",
-    hint: "SETTINGS.BossSplashColorSecondHint",
+  game.settings.register("cutscene-text", "colorSecond", {
+    name: "SETTINGS.CutsceneTextColorSecond",
+    hint: "SETTINGS.CutsceneTextColorSecondHint",
     scope: "world",
     type: String,
     default: "#ff8400",
     config: true,
   });
 
-  game.settings.register("boss-splash", "colorThird", {
-    name: "SETTINGS.BossSplashColorThird",
-    hint: "SETTINGS.BossSplashColorThirdHint",
+  game.settings.register("cutscene-text", "colorThird", {
+    name: "SETTINGS.CutsceneTextColorThird",
+    hint: "SETTINGS.CutsceneTextColorThirdHint",
     scope: "world",
     type: String,
     default: "#ff1f9c",
     config: true,
   });
 
-  game.settings.register("boss-splash", "colorFont", {
-    name: "SETTINGS.BossSplashColorFont",
-    hint: "SETTINGS.BossSplashColorFontHint",
+  game.settings.register("cutscene-text", "colorFont", {
+    name: "SETTINGS.CutsceneTextColorFont",
+    hint: "SETTINGS.CutsceneTextColorFontHint",
     scope: "world",
     type: String,
     default: "#ffffff",
     config: true,
   });
 
-  game.settings.register("boss-splash", "colorShadow", {
-    name: "SETTINGS.BossSplashColorShadow",
-    hint: "SETTINGS.BossSplashColorShadowHint",
+  game.settings.register("cutscene-text", "colorShadow", {
+    name: "SETTINGS.CutsceneTextColorShadow",
+    hint: "SETTINGS.CutsceneTextColorShadowHint",
     scope: "world",
     type: String,
     default: "#000000",
     config: true,
   });
 
-  game.settings.register("boss-splash", "subColorFont", {
-    name: "SETTINGS.BossSplashSubColorFont",
-    hint: "SETTINGS.BossSplashSubColorFontHint",
+  game.settings.register("cutscene-text", "subColorFont", {
+    name: "SETTINGS.CutsceneTextSubColorFont",
+    hint: "SETTINGS.CutsceneTextSubColorFontHint",
     scope: "world",
     type: String,
     default: "#ffffff",
     config: true,
   });
 
-  game.settings.register("boss-splash", "subColorShadow", {
-    name: "SETTINGS.BossSplashSubColorShadow",
-    hint: "SETTINGS.BossSplashSubColorShadowHint",
+  game.settings.register("cutscene-text", "subColorShadow", {
+    name: "SETTINGS.CutsceneTextSubColorShadow",
+    hint: "SETTINGS.CutsceneTextSubColorShadowHint",
     scope: "world",
     type: String,
     default: "#000000",
     config: true,
   });
 
-  game.settings.register("boss-splash", "bossSound", {
-    name: "SETTINGS.BossSplashSound",
-    hint: "SETTINGS.BossSplashSoundHint",
+  game.settings.register("cutscene-text", "bossSound", {
+    name: "SETTINGS.CutsceneTextSound",
+    hint: "SETTINGS.CutsceneTextSoundHint",
     scope: "world",
     default: null,
     config: true,
@@ -113,9 +113,9 @@ Hooks.once("init", async function () {
     filePicker: "audio",
   });
 
-  game.settings.register("boss-splash", "fontFamily", {
-    name: "SETTINGS.BossSplashFont",
-    hint: "SETTINGS.BossSplashFontHint",
+  game.settings.register("cutscene-text", "fontFamily", {
+    name: "SETTINGS.CutsceneTextFont",
+    hint: "SETTINGS.CutsceneTextFontHint",
     scope: "world",
     default: "Arial",
     config: true,
@@ -123,71 +123,71 @@ Hooks.once("init", async function () {
     choices: FontConfig.getAvailableFontChoices(),
   });
 
-  game.settings.register("boss-splash", "fontSize", {
-    name: "SETTINGS.BossSplashFontSize",
-    hint: "SETTINGS.BossSplashFontSizeHint",
+  game.settings.register("cutscene-text", "fontSize", {
+    name: "SETTINGS.CutsceneTextFontSize",
+    hint: "SETTINGS.CutsceneTextFontSizeHint",
     scope: "world",
     default: "100px",
     config: true,
     type: String,
   });
 
-  game.settings.register("boss-splash", "subFontSize", {
-    name: "SETTINGS.BossSplashSubFontSize",
-    hint: "SETTINGS.BossSplashSubFontSizeHint",
+  game.settings.register("cutscene-text", "subFontSize", {
+    name: "SETTINGS.CutsceneTextSubFontSize",
+    hint: "SETTINGS.CutsceneTextSubFontSizeHint",
     scope: "world",
     default: "30px",
     config: true,
     type: String,
   });
 
-  game.settings.register("boss-splash", "splashMessage", {
-    name: "SETTINGS.BossSplashMessage",
-    hint: "SETTINGS.BossSplashMessageHint",
+  game.settings.register("cutscene-text", "splashMessage", {
+    name: "SETTINGS.CutsceneTextMessage",
+    hint: "SETTINGS.CutsceneTextMessageHint",
     scope: "world",
     default: "{{actor.name}}",
     config: true,
     type: String,
   });
 
-  game.settings.register("boss-splash", "subText", {
-    name: "SETTINGS.BossSplashSubText",
-    hint: "SETTINGS.BossSplashSubTextHint",
+  game.settings.register("cutscene-text", "subText", {
+    name: "SETTINGS.CutsceneTextSubText",
+    hint: "SETTINGS.CutsceneTextSubTextHint",
     scope: "world",
     default: "",
     config: true,
     type: String,
   });
 
-  game.settings.register("boss-splash", "splashTimer", {
-    name: "SETTINGS.BossSplashTimer",
-    hint: "SETTINGS.BossSplashTimerHint",
+  game.settings.register("cutscene-text", "splashTimer", {
+    name: "SETTINGS.CutsceneTextTimer",
+    hint: "SETTINGS.CutsceneTextTimerHint",
     scope: "world",
     default: 5,
     config: true,
     type: Number,
   });
-  game.settings.register("boss-splash", "animationDuration", {
-    name: "SETTINGS.BossSplashAnimationDuration",
-    hint: "SETTINGS.BossSplashAnimationDurationHint",
+  game.settings.register("cutscene-text", "animationDuration", {
+    name: "SETTINGS.CutsceneTextAnimationDuration",
+    hint: "SETTINGS.CutsceneTextAnimationDurationHint",
     scope: "world",
     default: 3,
     config: true,
     type: Number,
   });
 
-  game.settings.register("boss-splash", "animationDelay", {
-    name: "SETTINGS.BossSplashAnimationDelay",
-    hint: "SETTINGS.BossSplashAnimationDelayHint",
+  game.settings.register("cutscene-text", "animationDelay", {
+    name: "SETTINGS.CutsceneTextAnimationDelay",
+    hint: "SETTINGS.CutsceneTextAnimationDelayHint",
     scope: "world",
     default: 0,
     config: true,
     type: Number,
   });
 
-  game.settings.register("boss-splash", "showTokenHUD", {
-    name: "SETTINGS.BossSplashTokenHUD",
-    hint: "SETTINGS.BossSplashTokenHUDHint",
+  game.settings.register("cutscene-text", "showTokenHUD", {
+    name: "SETTINGS.CutsceneTextTokenHUD",
+    hint: "SETTINGS.CutsceneTextTokenHUDHint",
     scope: "world",
     default: true,
     config: true,
@@ -197,91 +197,91 @@ Hooks.once("init", async function () {
 
 Hooks.on("renderSettingsConfig", (app, el, data) => {
   // Insert color picker input
-  el.find('[name="boss-splash.colorFirst"]')
+  el.find('[name="cutscene-text.colorFirst"]')
     .parent()
     .append(
       `<input type="color" value="${game.settings.get(
-        "boss-splash",
+        "cutscene-text",
         "colorFirst"
-      )}" data-edit="boss-splash.colorFirst">`
+      )}" data-edit="cutscene-text.colorFirst">`
     );
 
-  el.find('[name="boss-splash.colorSecond"]')
+  el.find('[name="cutscene-text.colorSecond"]')
     .parent()
     .append(
       `<input type="color" value="${game.settings.get(
-        "boss-splash",
+        "cutscene-text",
         "colorSecond"
-      )}" data-edit="boss-splash.colorSecond">`
+      )}" data-edit="cutscene-text.colorSecond">`
     );
 
-  el.find('[name="boss-splash.colorThird"]')
+  el.find('[name="cutscene-text.colorThird"]')
     .parent()
     .append(
       `<input type="color" value="${game.settings.get(
-        "boss-splash",
+        "cutscene-text",
         "colorThird"
-      )}" data-edit="boss-splash.colorThird">`
+      )}" data-edit="cutscene-text.colorThird">`
     );
 
-  el.find('[name="boss-splash.colorFont"]')
+  el.find('[name="cutscene-text.colorFont"]')
     .parent()
     .append(
       `<input type="color" value="${game.settings.get(
-        "boss-splash",
+        "cutscene-text",
         "colorFont"
-      )}" data-edit="boss-splash.colorFont">`
+      )}" data-edit="cutscene-text.colorFont">`
     );
 
-  el.find('[name="boss-splash.colorShadow"]')
+  el.find('[name="cutscene-text.colorShadow"]')
     .parent()
     .append(
       `<input type="color" value="${game.settings.get(
-        "boss-splash",
+        "cutscene-text",
         "colorShadow"
-      )}" data-edit="boss-splash.colorShadow">`
+      )}" data-edit="cutscene-text.colorShadow">`
     );
 
-  el.find('[name="boss-splash.subColorFont"]')
+  el.find('[name="cutscene-text.subColorFont"]')
     .parent()
     .append(
       `<input type="color" value="${game.settings.get(
-        "boss-splash",
+        "cutscene-text",
         "subColorFont"
-      )}" data-edit="boss-splash.subColorFont">`
+      )}" data-edit="cutscene-text.subColorFont">`
     );
 
-  el.find('[name="boss-splash.subColorShadow"]')
+  el.find('[name="cutscene-text.subColorShadow"]')
     .parent()
     .append(
       `<input type="color" value="${game.settings.get(
-        "boss-splash",
+        "cutscene-text",
         "subColorShadow"
-      )}" data-edit="boss-splash.subColorShadow">`
+      )}" data-edit="cutscene-text.subColorShadow">`
     );
 
   //Render fonts
   let fontList = FontConfig.getAvailableFontChoices();
-  const selectedFont = game.settings.get("boss-splash", "fontFamily");
+  const selectedFont = game.settings.get("cutscene-text", "fontFamily");
   for (const font in fontList) {
     let setSelected = false;
     if (selectedFont == fontList[font]) setSelected = true;
     let o = new Option(fontList[font], font, setSelected, setSelected);
-    el.find('[name="boss-splash.fontFamily"]').append(o);
+    el.find('[name="cutscene-text.fontFamily"]').append(o);
   }
 });
 
 Hooks.on("renderTokenHUD", (app, html, context) => {
   if (
-    game.user.role >= game.settings.get("boss-splash", "permissions-emit") &&
-    game.settings.get("boss-splash", "showTokenHUD")
+    game.user.role >= game.settings.get("cutscene-text", "permissions-emit") &&
+    game.settings.get("cutscene-text", "showTokenHUD")
   ) {
     const token = app?.object?.document;
     const button = $(
-      `<div class="control-icon boss-splash" title="Splash Boss"><i class="fa-solid fa-bullhorn"></i></div>`
+      `<div class="control-icon cutscene-text" title="Splash Boss"><i class="fa-solid fa-bullhorn"></i></div>`
     );
     button.on("mouseup", () => {
-      game.bossSplash.splashBoss();
+      game.cutsceneText.splashBoss();
     });
     const column = ".col.left";
     html.find(column).append(button);
@@ -289,7 +289,9 @@ Hooks.on("renderTokenHUD", (app, html, context) => {
 });
 
 Hooks.on("getActorDirectoryEntryContext", (html, options) => {
-  if (game.user.role >= game.settings.get("boss-splash", "permissions-emit")) {
+  if (
+    game.user.role >= game.settings.get("cutscene-text", "permissions-emit")
+  ) {
     options.push({
       name: `Splash Boss`,
       icon: `<i class="fa-solid fa-bullhorn"></i>`,
@@ -304,8 +306,10 @@ Hooks.on("getActorDirectoryEntryContext", (html, options) => {
 async function splashBoss(options = {}) {
   //if (!game.user.isGM) {
 
-  if (game.user.role <= game.settings.get("boss-splash", "permissions-emit")) {
-    ui.notifications.warn(game.i18n.localize("BossSplash.ErrorGM"));
+  if (
+    game.user.role <= game.settings.get("cutscene-text", "permissions-emit")
+  ) {
+    ui.notifications.warn(game.i18n.localize("CutsceneText.ErrorGM"));
     return;
   }
 
@@ -327,41 +331,41 @@ async function splashBoss(options = {}) {
   }
 
   if (!validOptions && game.user.isGM) {
-    ui.notifications.warn(game.i18n.localize("BossSplash.ErrorToken"));
+    ui.notifications.warn(game.i18n.localize("CutsceneText.ErrorToken"));
     return;
   }
-  await game.socket.emit("module.boss-splash", options);
+  await game.socket.emit("module.cutscene-text", options);
   //display for yourself
   displayBossOverlay(options);
 }
 
 function displayBossOverlay(options = {}) {
   if (options.close) {
-    if (game.bossSplash.currentOverlay) {
-      game.bossSplash.currentOverlay.close({ force: true });
+    if (game.cutsceneText.currentOverlay) {
+      game.cutsceneText.currentOverlay.close({ force: true });
     }
     return;
   }
 
-  if (game.bossSplash.currentOverlay) {
+  if (game.cutsceneText.currentOverlay) {
     if (game.user.isGM) {
-      ui.notifications.warn(game.i18n.localize("BossSplash.ErrorCount"));
+      ui.notifications.warn(game.i18n.localize("CutsceneText.ErrorCount"));
     }
     return;
   }
 
-  let overlay = new game.bossSplash.bossOverlay(options);
+  let overlay = new game.cutsceneText.bossOverlay(options);
   let overlayDelay =
     options.animationDelay ??
-    game.settings.get("boss-splash", "animationDelay");
+    game.settings.get("cutscene-text", "animationDelay");
 
   const delayOverlayTimer = setTimeout(async function () {
     overlay.render(true);
-    game.bossSplash.currentOverlay = overlay;
+    game.cutsceneText.currentOverlay = overlay;
 
     // Timer to remove the overlay
     let timerLength =
-      options.timer ?? game.settings.get("boss-splash", "splashTimer") * 1000;
+      options.timer ?? game.settings.get("cutscene-text", "splashTimer") * 1000;
 
     if (timerLength > 0) {
       //Close overlay after delay
@@ -371,7 +375,8 @@ function displayBossOverlay(options = {}) {
     }
   }, overlayDelay);
 
-  const sound = options.sound ?? game.settings.get("boss-splash", "bossSound");
+  const sound =
+    options.sound ?? game.settings.get("cutscene-text", "bossSound");
 
   if (!!sound) {
     foundry.audio.AudioHelper.play(
@@ -389,7 +394,8 @@ function displayBossOverlay(options = {}) {
 export class BossSplashOverlay extends Application {
   constructor(...args) {
     if (args[0].video) {
-      args[0].template = "modules/boss-splash/templates/boss-splash-video.hbs";
+      args[0].template =
+        "modules/cutscene-text/templates/cutscene-text-video.hbs";
     }
     super(...args);
   }
@@ -403,10 +409,10 @@ export class BossSplashOverlay extends Application {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       ...super.defaultOptions,
-      id: "boss-splash-overlay",
+      id: "cutscene-text-overlay",
       popOut: false,
       classes: ["bossplash"],
-      template: "modules/boss-splash/templates/boss-splash.hbs",
+      template: "modules/cutscene-text/templates/cutscene-text.hbs",
       actor: null,
       sound: null,
       colorFirst: null,
@@ -434,30 +440,33 @@ export class BossSplashOverlay extends Application {
     context.actor = this.options.actor ?? null;
     context.tokenName = this.options.tokenName ?? null;
     context.colorFirst =
-      this.options.colorFirst ?? game.settings.get("boss-splash", "colorFirst");
+      this.options.colorFirst ??
+      game.settings.get("cutscene-text", "colorFirst");
     context.colorSecond =
       this.options.colorSecond ??
-      game.settings.get("boss-splash", "colorSecond");
+      game.settings.get("cutscene-text", "colorSecond");
     context.colorThird =
-      this.options.colorThird ?? game.settings.get("boss-splash", "colorThird");
+      this.options.colorThird ??
+      game.settings.get("cutscene-text", "colorThird");
     context.colorFont =
-      this.options.colorFont ?? game.settings.get("boss-splash", "colorFont");
+      this.options.colorFont ?? game.settings.get("cutscene-text", "colorFont");
     context.subColorFont =
       this.options.subColorFont ??
-      game.settings.get("boss-splash", "subColorFont");
+      game.settings.get("cutscene-text", "subColorFont");
     context.colorShadow =
       this.options.colorShadow ??
-      game.settings.get("boss-splash", "colorShadow");
+      game.settings.get("cutscene-text", "colorShadow");
     context.subColorShadow =
       this.options.subColorShadow ??
-      game.settings.get("boss-splash", "subColorShadow");
+      game.settings.get("cutscene-text", "subColorShadow");
     context.sound =
-      this.options.sound ?? game.settings.get("boss-splash", "bossSound");
+      this.options.sound ?? game.settings.get("cutscene-text", "bossSound");
     let actor = game.actors.get(context.actor);
     context.message =
-      this.options.message ?? game.settings.get("boss-splash", "splashMessage");
+      this.options.message ??
+      game.settings.get("cutscene-text", "splashMessage");
     context.subText =
-      this.options.subText ?? game.settings.get("boss-splash", "subText");
+      this.options.subText ?? game.settings.get("cutscene-text", "subText");
 
     if (actor) {
       context.message = context.message.replace("{{name}}", actor.name);
@@ -477,17 +486,18 @@ export class BossSplashOverlay extends Application {
     }
     context.animationDuration =
       this.options.animationDuration ??
-      game.settings.get("boss-splash", "animationDuration");
+      game.settings.get("cutscene-text", "animationDuration");
     context.animationDelay =
       this.options.animationDelay ??
-      game.settings.get("boss-splash", "animationDelay");
+      game.settings.get("cutscene-text", "animationDelay");
     context.fontFamily =
-      this.options.fontFamily ?? game.settings.get("boss-splash", "fontFamily");
+      this.options.fontFamily ??
+      game.settings.get("cutscene-text", "fontFamily");
     context.fontSize =
-      this.options.fontSize ?? game.settings.get("boss-splash", "fontSize");
+      this.options.fontSize ?? game.settings.get("cutscene-text", "fontSize");
     context.subFontSize =
       this.options.subFontSize ??
-      game.settings.get("boss-splash", "subFontSize");
+      game.settings.get("cutscene-text", "subFontSize");
     context.video = this.options.video;
     context.fill = this.options.fill;
     return context;
@@ -503,7 +513,7 @@ export class BossSplashOverlay extends Application {
 
   async close(options) {
     super.close(options);
-    game.bossSplash.currentOverlay = null;
+    game.cutsceneText.currentOverlay = null;
   }
 
   activateListeners(html) {
