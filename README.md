@@ -14,13 +14,12 @@ Token HUD
 
 ![image](https://github.com/jsavko/boss-splash/assets/192591/a10cd2c2-cb84-4399-ac86-343b7de26fb6)
 
-
 Actor Directory Context Menu
 
 ![image](https://github.com/jsavko/boss-splash/assets/192591/f16c999e-eeb1-4982-81d7-d576ea41e00e)
 
-
 Macro
+
 ```
 /**
  * Displays a splash screen with the Actor Image and Text
@@ -47,7 +46,7 @@ Macro
     * @param {string} video  Path to video file for splash screen.
     * @param {bool} fill  Stretch video to full screen. defaults false
     * @param {bool} close  Closes open overlay for all players.
-    * 
+    *
  */
 
 let options = {
@@ -55,12 +54,12 @@ let options = {
   sound: null,
   colorFirst: null,
   colorSecond:null,
-  colorThird: null, 
+  colorThird: null,
   colorFont: null,
   subColorFont: null,
   colorShadow: null,
   subColorShadow: null,
-  message: null, 
+  message: null,
   subText: null,
   fontFamily: null,
   fontSize: null,
@@ -71,7 +70,7 @@ let options = {
   animationDelay: null,
   video: null,
   fill: false,
-  close: null 
+  close: null
 };
 
 game.bossSplash.splashBoss(options);
@@ -79,27 +78,27 @@ game.bossSplash.splashBoss(options);
 
 Examples
 
-Splash currently selected Token's Actor 
+Splash currently selected Token's Actor
 
-```game.bossSplash.splashBoss()```
+`game.bossSplash.splashBoss()`
 
-Splash A specific Actor 
+Splash A specific Actor
 
-```game.bossSplash.splashBoss({actor:"WNX5OQKPh4uaV7mW"})```
+`game.bossSplash.splashBoss({actor:"WNX5OQKPh4uaV7mW"})`
 
 Splash the currently selected Token with all black bars
 
-```game.bossSplash.splashBoss({colorFirst:"#000000",colorSecond:"#000000",colorThird:"#000000"})```
+`game.bossSplash.splashBoss({colorFirst:"#000000",colorSecond:"#000000",colorThird:"#000000"})`
 
 Splash specific art and message
 
-```game.bossSplash.splashBoss({message:"Valeros The Mighty!", actorImg:"modules/pf2e-beginner-box/assets/portraits-heroes/iconics/valeros-2.webp"})```
+`game.bossSplash.splashBoss({message:"Valeros The Mighty!", actorImg:"modules/pf2e-beginner-box/assets/portraits-heroes/iconics/valeros-2.webp"})`
 
-Open boss splash with no dismisal timer 
-```game.bossSplash.splashBoss({timer:0})```
+Open boss splash with no dismisal timer
+`game.bossSplash.splashBoss({timer:0})`
 
-Close all open splash screens for all players 
-```game.bossSplash.splashBoss({close:true})```
+Close all open splash screens for all players
+`game.bossSplash.splashBoss({close:true})`
 
-Use a video splash 
-```game.bossSplash.splashBoss({video:'/world/myworld/media/Ogre.mp4'})```
+Use a video splash
+`game.bossSplash.splashBoss({video:'/world/myworld/media/Ogre.mp4'})`

@@ -1,63 +1,59 @@
-
 .bossOverlay {
-    position: fixed;
-    height: 100vh;
-    width: 100vw;
-    z-index: 2147483647;
-    background: rgba(0, 0, 0, 0.5);
-    pointer-events: none;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2147483647;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
 }
 .actorArt {
-  
 }
 .actorArt img {
   max-height: 700px;
   position: fixed;
   top: 25%;
   right: 15%;
-  border:none;
+  border: none;
   pointer-events: none;
 }
 
 .stroke {
-  filter: drop-shadow(3px 0 0 #faf9f6) 
-  drop-shadow(0 3px 0 #faf9f6)
-  drop-shadow(-3px 0 0 #faf9f6) 
-  drop-shadow(0 -3px 0 #faf9f6);
+  filter: drop-shadow(3px 0 0 #faf9f6) drop-shadow(0 3px 0 #faf9f6)
+    drop-shadow(-3px 0 0 #faf9f6) drop-shadow(0 -3px 0 #faf9f6);
 }
 
-.colorBand { 
-    height: 160px; 
-    position: fixed; 
-    top:60%;
-    width:100%; 
-    opacity: 1;
-    display: block;
+.colorBand {
+  height: 160px;
+  position: fixed;
+  top: 60%;
+  width: 100%;
+  opacity: 1;
+  display: block;
 }
 
 .colorFirst {
   height: 100px;
-  width:100%; 
-  display:block;
+  width: 100%;
+  display: block;
   /* background-color: #ffd502; */
 }
 
 .colorFirst h2 {
   position: relative;
-   /* color: white;
+  /* color: white;
   text-shadow: 3px 3px BLACK; 
   font-size: 100px;*/
   text-align: right;
   margin-right: 20%;
   top: -30px;
-  border-bottom:none;
+  border-bottom: none;
   text-transform: uppercase;
 }
 
 .colorSecond {
   height: 30px;
-  width: 100%; 
-  display:block;
+  width: 100%;
+  display: block;
   /* background-color: #ff8400; */
 }
 
@@ -66,13 +62,13 @@
   text-align: right;
   margin-right: 25%;
   top: -10px;
-  border-bottom:none;
+  border-bottom: none;
 }
 
-.colorThird { 
+.colorThird {
   height: 15px;
-  width: 100%; 
-  display:block;
+  width: 100%;
+  display: block;
   /* background-color: #ff1f9c; */
 }
 
