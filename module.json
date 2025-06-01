@@ -1,17 +1,17 @@
 {
   "id": "boss-splash",
   "title": "Boss Splash Screen",
-  "version": "1.1.11",
+  "version": "0.0.1",
   "compatibility": {
     "minimum": "12",
     "verified": "12"
   },
   "esmodules": ["boss-splash.js"],
-  "styles": ["css/boss-splash.css"],
+  "styles": ["css/cutscene-text.css"],
   "authors": [
     {
-      "name": "LostPhoenix",
-      "discord": "lostphoenix._.",
+      "name": "novamoth",
+      "discord": "novamoth",
       "flags": {}
     }
   ],
