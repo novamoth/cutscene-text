@@ -20,9 +20,8 @@
   text-align: center;
   margin-right: 50%;
   margin-left: 50%;
-  top: -30px;
+  top: 40%;
   border-bottom: none;
-  text-transform: uppercase;
 }
 
 .textWrapper h3 {
@@ -30,7 +29,7 @@
   text-align: right;
   margin-right: 50%;
   margin-left: 50%;
-  top: -10px;
+  top: 50%;
   border-bottom: none;
 }
 
