@@ -262,7 +262,6 @@ export class CutsceneOverlay extends Application {
       subColorFont: null,
       colorShadow: null,
       subColorShadow: null,
-      image: null,
       message: null,
       subText: null,
       animationDuration: null,
@@ -291,7 +290,6 @@ export class CutsceneOverlay extends Application {
     context.message = this.options.message;
     context.subText = this.options.subText;
 
-    context.image = this.options.image;
     context.animationDuration =
       this.options.animationDuration ??
       game.settings.get("cutscene-text", "animationDuration");

@@ -1,36 +1,26 @@
 <div class="bossOverlay">
   <style>
-    .slide-right { animation-duration:
-    {{animationDuration}}s; animation-name: slide-right; } .sub-slide-right {
+    .fade-in { animation-duration:
+    {{animationDuration}}s; animation-name: fade-in; } .fade-out {
     animation-duration:
-    {{animationDuration}}s; animation-name: sub-slide-right; } .slide-left {
-    animation-duration:
-    {{animationDuration}}s; animation-name: slide-left; }
+    {{animationDuration}}s; animation-name: fade-out; }
   </style>
-  <div class="actorArt">
-    <img name="actorImg" class="slide-left" src="{{actorImg}}" />
-  </div>
-  <div class="colorBand">
-    <div class="colorFirst" style="background-color: {{colorFirst}}">
-      <h2
-        name="bossMessage"
-        class="slide-right"
-        style="color: {{colorFont}}; text-shadow: 3px 3px {{colorShadow}}; font-family: {{fontFamily}}; font-size: {{fontSize}}"
+  <div class="textWrapper">
+    <h2
+      name="bossMessage"
+      class="fade-in"
+      style="color: {{colorFont}}; text-shadow: 3px 3px {{colorShadow}}; font-family: {{fontFamily}}; font-size: {{fontSize}}"
+    >
+      {{message}}
+    </h2>
+    {{#if subText}}
+      <h3
+        name="bossSubText"
+        class="fade-in"
+        style="color: {{subColorFont}}; text-shadow: 3px 3px {{subColorShadow}}; font-family: {{fontFamily}}; font-size: {{subFontSize}}"
       >
-        {{message}}
-      </h2>
-    </div>
-    <div class="colorSecond" style="background-color: {{colorSecond}}">
-      {{#if subText}}
-        <h3
-          name="bossSubText"
-          class="sub-slide-right"
-          style="color: {{subColorFont}}; text-shadow: 3px 3px {{subColorShadow}}; font-family: {{fontFamily}}; font-size: {{subFontSize}}"
-        >
-          {{subText}}
-        </h3>
-      {{/if}}
-    </div>
-    <div class="colorThird" style="background-color: {{colorThird}}"></div>
+        {{subText}}
+      </h3>
+    {{/if}}
   </div>
 </div>

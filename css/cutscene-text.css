@@ -6,98 +6,48 @@
   background: rgba(0, 0, 0, 0.5);
   pointer-events: none;
 }
-.actorArt {
-}
-.actorArt img {
-  max-height: 700px;
-  position: fixed;
-  top: 25%;
-  right: 15%;
-  border: none;
-  pointer-events: none;
-}
 
 .stroke {
   filter: drop-shadow(3px 0 0 #faf9f6) drop-shadow(0 3px 0 #faf9f6)
     drop-shadow(-3px 0 0 #faf9f6) drop-shadow(0 -3px 0 #faf9f6);
 }
 
-.colorBand {
-  height: 160px;
-  position: fixed;
-  top: 60%;
-  width: 100%;
-  opacity: 1;
-  display: block;
-}
-
-.colorFirst {
-  height: 100px;
-  width: 100%;
-  display: block;
-  /* background-color: #ffd502; */
-}
-
-.colorFirst h2 {
+.textWrapper h2 {
   position: relative;
   /* color: white;
   text-shadow: 3px 3px BLACK; 
   font-size: 100px;*/
-  text-align: right;
-  margin-right: 20%;
+  text-align: center;
+  margin-right: 50%;
+  margin-left: 50%;
   top: -30px;
   border-bottom: none;
   text-transform: uppercase;
 }
 
-.colorSecond {
-  height: 30px;
-  width: 100%;
-  display: block;
-  /* background-color: #ff8400; */
-}
-
-.colorSecond h3 {
+.textWrapper h3 {
   position: relative;
   text-align: right;
-  margin-right: 25%;
+  margin-right: 50%;
+  margin-left: 50%;
   top: -10px;
   border-bottom: none;
 }
 
-.colorThird {
-  height: 15px;
-  width: 100%;
-  display: block;
-  /* background-color: #ff1f9c; */
-}
-
-@keyframes slide-left {
+@keyframes fade-in {
   from {
-    right: 5%;
+    opacity: 0;
   }
-
   to {
-    right: 15%;
+    opacity: 1;
   }
 }
 
-@keyframes slide-right {
+@keyframes fade-out {
   from {
-    margin-right: 30%;
+    opacity: 1;
   }
-
   to {
-    margin-right: 20%;
-  }
-}
-
-@keyframes sub-slide-right {
-  from {
-    margin-right: 30%;
-  }
-
-  to {
-    margin-right: 25%;
+    opacity: 0;
   }
 }
