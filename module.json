@@ -6,7 +6,7 @@
     "minimum": "12",
     "verified": "12"
   },
-  "esmodules": ["boss-splash.js"],
+  "esmodules": ["cutscene-text.js"],
   "styles": ["css/cutscene-text.css"],
   "authors": [
     {

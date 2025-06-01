@@ -1,13 +1,12 @@
 Hooks.once("init", async function () {
   console.log("Cutscene Text init - Registrering Socket");
   game.socket.on("module.cutscene-text", (data) => {
-    displayBossOverlay(data);
+    displayCutscene(data);
   });
 
   game.cutsceneText = {
-    splashBoss: splashBoss,
-    emiteBoss: splashBoss,
-    bossOverlay: BossSplashOverlay,
+    activateCutscene,
+    cutsceneOverlay: CutsceneOverlay,
     currentOverlay: null,
   };
 
@@ -29,42 +28,6 @@ Hooks.once("init", async function () {
     type: Number,
     choices: permissionLevels,
     onChange: debouncedReload,
-  });
-
-  game.settings.register("cutscene-text", "colorFirst", {
-    name: "SETTINGS.CutsceneTextColorFirst",
-    hint: "SETTINGS.CutsceneTextColorFirstHint",
-    scope: "world",
-    type: String,
-    default: "#ffd502",
-    config: true,
-  });
-
-  game.settings.register("cutscene-text", "colorFirst", {
-    name: "SETTINGS.CutsceneTextColorFirst",
-    hint: "SETTINGS.CutsceneTextColorFirstHint",
-    scope: "world",
-    type: String,
-    default: "#ffd502",
-    config: true,
-  });
-
-  game.settings.register("cutscene-text", "colorSecond", {
-    name: "SETTINGS.CutsceneTextColorSecond",
-    hint: "SETTINGS.CutsceneTextColorSecondHint",
-    scope: "world",
-    type: String,
-    default: "#ff8400",
-    config: true,
-  });
-
-  game.settings.register("cutscene-text", "colorThird", {
-    name: "SETTINGS.CutsceneTextColorThird",
-    hint: "SETTINGS.CutsceneTextColorThirdHint",
-    scope: "world",
-    type: String,
-    default: "#ff1f9c",
-    config: true,
   });
 
   game.settings.register("cutscene-text", "colorFont", {
@@ -103,16 +66,6 @@ Hooks.once("init", async function () {
     config: true,
   });
 
-  game.settings.register("cutscene-text", "bossSound", {
-    name: "SETTINGS.CutsceneTextSound",
-    hint: "SETTINGS.CutsceneTextSoundHint",
-    scope: "world",
-    default: null,
-    config: true,
-    type: String,
-    filePicker: "audio",
-  });
-
   game.settings.register("cutscene-text", "fontFamily", {
     name: "SETTINGS.CutsceneTextFont",
     hint: "SETTINGS.CutsceneTextFontHint",
@@ -137,24 +90,6 @@ Hooks.once("init", async function () {
     hint: "SETTINGS.CutsceneTextSubFontSizeHint",
     scope: "world",
     default: "30px",
-    config: true,
-    type: String,
-  });
-
-  game.settings.register("cutscene-text", "splashMessage", {
-    name: "SETTINGS.CutsceneTextMessage",
-    hint: "SETTINGS.CutsceneTextMessageHint",
-    scope: "world",
-    default: "{{actor.name}}",
-    config: true,
-    type: String,
-  });
-
-  game.settings.register("cutscene-text", "subText", {
-    name: "SETTINGS.CutsceneTextSubText",
-    hint: "SETTINGS.CutsceneTextSubTextHint",
-    scope: "world",
-    default: "",
     config: true,
     type: String,
   });
@@ -184,46 +119,9 @@ Hooks.once("init", async function () {
     config: true,
     type: Number,
   });
-
-  game.settings.register("cutscene-text", "showTokenHUD", {
-    name: "SETTINGS.CutsceneTextTokenHUD",
-    hint: "SETTINGS.CutsceneTextTokenHUDHint",
-    scope: "world",
-    default: true,
-    config: true,
-    type: Boolean,
-  });
 });
 
 Hooks.on("renderSettingsConfig", (app, el, data) => {
-  // Insert color picker input
-  el.find('[name="cutscene-text.colorFirst"]')
-    .parent()
-    .append(
-      `<input type="color" value="${game.settings.get(
-        "cutscene-text",
-        "colorFirst"
-      )}" data-edit="cutscene-text.colorFirst">`
-    );
-
-  el.find('[name="cutscene-text.colorSecond"]')
-    .parent()
-    .append(
-      `<input type="color" value="${game.settings.get(
-        "cutscene-text",
-        "colorSecond"
-      )}" data-edit="cutscene-text.colorSecond">`
-    );
-
-  el.find('[name="cutscene-text.colorThird"]')
-    .parent()
-    .append(
-      `<input type="color" value="${game.settings.get(
-        "cutscene-text",
-        "colorThird"
-      )}" data-edit="cutscene-text.colorThird">`
-    );
-
   el.find('[name="cutscene-text.colorFont"]')
     .parent()
     .append(
@@ -271,39 +169,7 @@ Hooks.on("renderSettingsConfig", (app, el, data) => {
   }
 });
 
-Hooks.on("renderTokenHUD", (app, html, context) => {
-  if (
-    game.user.role >= game.settings.get("cutscene-text", "permissions-emit") &&
-    game.settings.get("cutscene-text", "showTokenHUD")
-  ) {
-    const token = app?.object?.document;
-    const button = $(
-      `<div class="control-icon cutscene-text" title="Splash Boss"><i class="fa-solid fa-bullhorn"></i></div>`
-    );
-    button.on("mouseup", () => {
-      game.cutsceneText.splashBoss();
-    });
-    const column = ".col.left";
-    html.find(column).append(button);
-  }
-});
-
-Hooks.on("getActorDirectoryEntryContext", (html, options) => {
-  if (
-    game.user.role >= game.settings.get("cutscene-text", "permissions-emit")
-  ) {
-    options.push({
-      name: `Splash Boss`,
-      icon: `<i class="fa-solid fa-bullhorn"></i>`,
-      element: {},
-      callback: (li) => {
-        splashBoss({ actor: li.data("documentId") });
-      },
-    });
-  }
-});
-
-async function splashBoss(options = {}) {
+async function activateCutscene(options = {}) {
   //if (!game.user.isGM) {
 
   if (
@@ -316,17 +182,11 @@ async function splashBoss(options = {}) {
   let validOptions = false;
   options.sound = options.sound ?? null;
 
-  if (options.actor) {
-    validOptions = true;
-  } else if (options.video) {
+  if (options.video) {
     validOptions = true;
   } else if (options.close) {
     validOptions = true;
-  } else if (options.message && options.actorImg) {
-    validOptions = true;
-  } else if (canvas.tokens.controlled.length) {
-    options.actor = canvas.tokens.controlled[0]?.document.actorId;
-    options.tokenName = canvas.tokens.controlled[0]?.name;
+  } else if (options.message) {
     validOptions = true;
   }
 
@@ -336,10 +196,10 @@ async function splashBoss(options = {}) {
   }
   await game.socket.emit("module.cutscene-text", options);
   //display for yourself
-  displayBossOverlay(options);
+  displayCutscene(options);
 }
 
-function displayBossOverlay(options = {}) {
+function displayCutscene(options = {}) {
   if (options.close) {
     if (game.cutsceneText.currentOverlay) {
       game.cutsceneText.currentOverlay.close({ force: true });
@@ -354,7 +214,7 @@ function displayBossOverlay(options = {}) {
     return;
   }
 
-  let overlay = new game.cutsceneText.bossOverlay(options);
+  let overlay = new game.cutsceneText.cutsceneOverlay(options);
   let overlayDelay =
     options.animationDelay ??
     game.settings.get("cutscene-text", "animationDelay");
@@ -374,24 +234,9 @@ function displayBossOverlay(options = {}) {
       }, timerLength);
     }
   }, overlayDelay);
-
-  const sound =
-    options.sound ?? game.settings.get("cutscene-text", "bossSound");
-
-  if (!!sound) {
-    foundry.audio.AudioHelper.play(
-      {
-        src: sound,
-        volume: game.settings.get("core", "globalInterfaceVolume"),
-        autoplay: true,
-        loop: false,
-      },
-      true
-    );
-  }
 }
 
-export class BossSplashOverlay extends Application {
+export class CutsceneOverlay extends Application {
   constructor(...args) {
     if (args[0].video) {
       args[0].template =
@@ -411,18 +256,13 @@ export class BossSplashOverlay extends Application {
       ...super.defaultOptions,
       id: "cutscene-text-overlay",
       popOut: false,
-      classes: ["bossplash"],
+      classes: ["cutscenetext"],
       template: "modules/cutscene-text/templates/cutscene-text.hbs",
-      actor: null,
-      sound: null,
-      colorFirst: null,
-      colorSecond: null,
-      colorThird: null,
       colorFont: null,
       subColorFont: null,
       colorShadow: null,
       subColorShadow: null,
-      actorImg: null,
+      image: null,
       message: null,
       subText: null,
       animationDuration: null,
@@ -437,17 +277,6 @@ export class BossSplashOverlay extends Application {
 
   async getData(options = {}) {
     const context = super.getData(options);
-    context.actor = this.options.actor ?? null;
-    context.tokenName = this.options.tokenName ?? null;
-    context.colorFirst =
-      this.options.colorFirst ??
-      game.settings.get("cutscene-text", "colorFirst");
-    context.colorSecond =
-      this.options.colorSecond ??
-      game.settings.get("cutscene-text", "colorSecond");
-    context.colorThird =
-      this.options.colorThird ??
-      game.settings.get("cutscene-text", "colorThird");
     context.colorFont =
       this.options.colorFont ?? game.settings.get("cutscene-text", "colorFont");
     context.subColorFont =
@@ -459,31 +288,10 @@ export class BossSplashOverlay extends Application {
     context.subColorShadow =
       this.options.subColorShadow ??
       game.settings.get("cutscene-text", "subColorShadow");
-    context.sound =
-      this.options.sound ?? game.settings.get("cutscene-text", "bossSound");
-    let actor = game.actors.get(context.actor);
-    context.message =
-      this.options.message ??
-      game.settings.get("cutscene-text", "splashMessage");
-    context.subText =
-      this.options.subText ?? game.settings.get("cutscene-text", "subText");
+    context.message = this.options.message;
+    context.subText = this.options.subText;
 
-    if (actor) {
-      context.message = context.message.replace("{{name}}", actor.name);
-      context.message = context.message.replace("{{actor.name}}", actor.name);
-      context.message = context.message.replace(
-        "{{token.name}}",
-        options.tokenName
-      );
-      context.actorImg = this.options.actorImg ?? actor.img;
-      context.subText = context.subText.replace("{{actor.name}}", actor.name);
-      context.subText = context.subText.replace(
-        "{{token.name}}",
-        options.tokenName
-      );
-    } else {
-      context.actorImg = this.options.actorImg;
-    }
+    context.image = this.options.image;
     context.animationDuration =
       this.options.animationDuration ??
       game.settings.get("cutscene-text", "animationDuration");
@@ -501,10 +309,6 @@ export class BossSplashOverlay extends Application {
     context.video = this.options.video;
     context.fill = this.options.fill;
     return context;
-  }
-
-  get actor() {
-    return this.token?.actor ?? game.user?.character ?? null;
   }
 
   async refresh(force) {
