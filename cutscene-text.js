@@ -187,20 +187,8 @@ async function activateCutscene(options = {}) {
     ui.notifications.warn(game.i18n.localize("CutsceneText.ErrorGM"));
     return;
   }
-
-  let validOptions = false;
   options.sound = options.sound ?? null;
 
-  if (options.video) {
-    validOptions = true;
-  } else if (options.close) {
-    validOptions = true;
-  }
-
-  if (!validOptions && game.user.isGM) {
-    ui.notifications.warn(game.i18n.localize("CutsceneText.ErrorToken"));
-    return;
-  }
   await game.socket.emit("module.cutscene-text", options);
   //display for yourself
   displayCutscene(options);
