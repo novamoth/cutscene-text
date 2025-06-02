@@ -120,9 +120,18 @@ Hooks.once("init", async function () {
     type: Number,
   });
 
-  game.settings.register("cutscene-text", "perLineDelay", {
-    name: "SETTINGS.CutsceneTextPerLineDelay",
-    hint: "SETTINGS.CutsceneTextPerLineDelayHint",
+  game.settings.register("cutscene-text", "lineTwoDelay", {
+    name: "SETTINGS.CutsceneTextLineTwoDelay",
+    hint: "SETTINGS.CutsceneTextLineTwoDelayHint",
+    scope: "world",
+    default: 1000,
+    config: true,
+    type: Number,
+  });
+
+  game.settings.register("cutscene-text", "lineThreeDelay", {
+    name: "SETTINGS.CutsceneTextLineThreeDelay",
+    hint: "SETTINGS.CutsceneTextLineThreeDelayHint",
     scope: "world",
     default: 1000,
     config: true,
@@ -260,7 +269,8 @@ export class CutsceneOverlay extends Application {
       lineOne: null,
       lineTwo: null,
       lineThree: null,
-      perLineDelay: null,
+      lineTwoDelay: null,
+      lineThreeDelay: null,
       animationDuration: null,
       animationDelay: null,
       fontFamily: null,
@@ -287,9 +297,12 @@ export class CutsceneOverlay extends Application {
     context.lineOne = this.options.lineOne;
     context.lineTwo = this.options.lineTwo;
     context.lineThree = this.options.lineThree;
-    context.perLineDelay =
-      this.options.perLineDelay ??
-      game.settings.get("cutscene-text", "perLineDelay");
+    context.lineTwoDelay =
+      this.options.lineTwoDelay ??
+      game.settings.get("cutscene-text", "lineTwoDelay");
+    context.lineThreeDelay =
+      this.options.lineThreeDelay ??
+      game.settings.get("cutscene-text", "lineThreeDelay");
 
     context.animationDuration =
       this.options.animationDuration ??
