@@ -195,8 +195,6 @@ async function activateCutscene(options = {}) {
     validOptions = true;
   } else if (options.close) {
     validOptions = true;
-  } else if (options.lineOne) {
-    validOptions = true;
   }
 
   if (!validOptions && game.user.isGM) {
