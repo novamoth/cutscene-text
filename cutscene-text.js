@@ -119,6 +119,15 @@ Hooks.once("init", async function () {
     config: true,
     type: Number,
   });
+
+  game.settings.register("cutscene-text", "perLineDelay", {
+    name: "SETTINGS.CutsceneTextPerLineDelay",
+    hint: "SETTINGS.CutsceneTextPerLineDelayHint",
+    scope: "world",
+    default: 1000,
+    config: true,
+    type: Number,
+  });
 });
 
 Hooks.on("renderSettingsConfig", (app, el, data) => {
@@ -265,6 +274,7 @@ export class CutsceneOverlay extends Application {
       lineOne: null,
       lineTwo: null,
       lineThree: null,
+      perLineDelay: null,
       animationDuration: null,
       animationDelay: null,
       fontFamily: null,
@@ -291,6 +301,9 @@ export class CutsceneOverlay extends Application {
     context.lineOne = this.options.lineOne;
     context.lineTwo = this.options.lineTwo;
     context.lineThree = this.options.lineThree;
+    context.perLineDelay =
+      this.options.perLineDelay ??
+      game.settings.get("cutscene-text", "perLineDelay");
 
     context.animationDuration =
       this.options.animationDuration ??

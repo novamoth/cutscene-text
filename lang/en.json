@@ -15,6 +15,8 @@
   "SETTINGS.CutsceneTextAnimationDurationHint": "Number of seconds for animation to finish. Set this to 0 for no animation.",
   "SETTINGS.CutsceneTextAnimationDelay": "Animation Delay",
   "SETTINGS.CutsceneTextAnimationDelayHint": "Number of miliseconds for animation to be delayed before starting.",
+  "SETTINGS.CutsceneTextPerLineDelay": "Per Line Delay",
+  "SETTINGS.CutsceneTextPerLineDelayHint": "Number of miliseconds to wait between rendering each line.",
   "SETTINGS.CutsceneTextFont": "Banner Font",
   "SETTINGS.CutsceneTextFontHint": "Add new fonts to foundry using the built in font tool to use differnt fonts.",
   "SETTINGS.CutsceneTextFontSize": "Banner Font Size",
