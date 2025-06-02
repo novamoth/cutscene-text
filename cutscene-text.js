@@ -186,7 +186,7 @@ async function activateCutscene(options = {}) {
     validOptions = true;
   } else if (options.close) {
     validOptions = true;
-  } else if (options.message) {
+  } else if (options.lineOne) {
     validOptions = true;
   }
 
@@ -262,8 +262,9 @@ export class CutsceneOverlay extends Application {
       subColorFont: null,
       colorShadow: null,
       subColorShadow: null,
-      message: null,
-      subText: null,
+      lineOne: null,
+      lineTwo: null,
+      lineThree: null,
       animationDuration: null,
       animationDelay: null,
       fontFamily: null,
@@ -287,8 +288,9 @@ export class CutsceneOverlay extends Application {
     context.subColorShadow =
       this.options.subColorShadow ??
       game.settings.get("cutscene-text", "subColorShadow");
-    context.message = this.options.message;
-    context.subText = this.options.subText;
+    context.lineOne = this.options.lineOne;
+    context.lineTwo = this.options.lineTwo;
+    context.lineThree = this.options.lineThree;
 
     context.animationDuration =
       this.options.animationDuration ??
