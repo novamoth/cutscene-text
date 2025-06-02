@@ -18,17 +18,13 @@
   text-shadow: 3px 3px BLACK; 
   font-size: 100px;*/
   text-align: center;
-  margin-right: 50%;
-  margin-left: 50%;
   top: 40%;
   border-bottom: none;
 }
 
 .textWrapper h3 {
   position: relative;
-  text-align: right;
-  margin-right: 50%;
-  margin-left: 50%;
+  text-align: center;
   top: 50%;
   border-bottom: none;
 }
