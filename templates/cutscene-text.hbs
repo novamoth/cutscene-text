@@ -1,9 +1,9 @@
 <div class="bossOverlay">
   <style>
     .fade-in { animation-duration:
-    {{animationDuration}}s; animation-name: fade-in; opacity: 0} .fade-out {
+    {{animationDuration}}s; animation-name: fade-in; opacity: 0; animation-fill-mode: forwards;} .fade-out {
     animation-duration:
-    {{animationDuration}}s; animation-name: fade-out; opacity: 1}
+    {{animationDuration}}s; animation-name: fade-out; opacity: 1; animation-fill-mode: forwards;}
   </style>
   <div class="textWrapper">
     {{#if lineOne}}

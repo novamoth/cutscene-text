@@ -234,7 +234,7 @@ function displayCutscene(options = {}) {
     if (timerLength > 0) {
       //Close overlay after delay
       setTimeout(async function () {
-        await overlay.close({ force: true });
+        await overlay.close({ animate: true });
       }, timerLength);
     }
   }, overlayDelay);
