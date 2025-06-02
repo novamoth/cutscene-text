@@ -22,14 +22,14 @@
   text-shadow: 3px 3px BLACK; 
   font-size: 100px;*/
   text-align: center;
-  top: 40%;
+  top: 30%;
   border-bottom: none;
 }
 
 .textWrapper h3 {
   position: relative;
   text-align: center;
-  top: 50%;
+  /* top: 35%; */
   border-bottom: none;
 }
 
