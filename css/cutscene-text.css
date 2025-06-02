@@ -11,7 +11,11 @@
   filter: drop-shadow(3px 0 0 #faf9f6) drop-shadow(0 3px 0 #faf9f6)
     drop-shadow(-3px 0 0 #faf9f6) drop-shadow(0 -3px 0 #faf9f6);
 }
-
+.textWrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
 .textWrapper h2 {
   position: relative;
   /* color: white;
