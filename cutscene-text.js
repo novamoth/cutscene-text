@@ -124,7 +124,7 @@ Hooks.once("init", async function () {
     name: "SETTINGS.CutsceneTextLineTwoDelay",
     hint: "SETTINGS.CutsceneTextLineTwoDelayHint",
     scope: "world",
-    default: 1000,
+    default: 2000,
     config: true,
     type: Number,
   });
@@ -133,7 +133,7 @@ Hooks.once("init", async function () {
     name: "SETTINGS.CutsceneTextLineThreeDelay",
     hint: "SETTINGS.CutsceneTextLineThreeDelayHint",
     scope: "world",
-    default: 1000,
+    default: 7000,
     config: true,
     type: Number,
   });
@@ -330,11 +330,17 @@ export class CutsceneOverlay extends Application {
   async fadeAndThenClose(options) {
     if (this.element) {
       console.log(this.element[0]);
-      const elements = this.element[0].querySelectorAll(".fade-in");
-      console.log(elements.length);
+      const textLines = this.element[0].querySelectorAll(".fade-in");
+      elements.forEach((line) => {
+        line.classList.remove("fade-in");
+        line.classList.remove("animation-delay");
+        line.classList.add("fade-out");
+      });
     }
 
-    this.close(options);
+    setTimeout(async function () {
+      this.close(options);
+    }, animationDuration);
   }
 
   async close(options) {
