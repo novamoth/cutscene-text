@@ -339,7 +339,7 @@ export class CutsceneOverlay extends Application {
 
     return new Promise((resolve) => {
       setTimeout(async function () {
-        resolve(close(options));
+        resolve(game.cutsceneText.currentOverlay.close(options));
       }, (this.options.animationDuration ??
         game.settings.get("cutscene-text", "animationDuration")) * 1000);
     });
