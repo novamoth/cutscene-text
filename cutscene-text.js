@@ -234,13 +234,7 @@ function displayCutscene(options = {}) {
     if (timerLength > 0) {
       //Close overlay after delay
       setTimeout(async function () {
-        // await overlay.close({ animate: true });
-        const allElements = overlay.element.getElementsByClassName("fade-in");
-        for (let i = 0; i < allElements.length; i++) {
-          allElements[i].classList.remove("fade-in");
-          allElements[i].classList.remove("animation-delay");
-          allElements[i].classList.add("fade-out");
-        }
+        await overlay.close({ animate: true });
       }, timerLength);
     }
   }, overlayDelay);
@@ -334,6 +328,7 @@ export class CutsceneOverlay extends Application {
   }
 
   async close(options) {
+    console.log(this.element);
     super.close(options);
     game.cutsceneText.currentOverlay = null;
   }
