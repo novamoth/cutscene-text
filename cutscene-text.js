@@ -234,7 +234,13 @@ function displayCutscene(options = {}) {
     if (timerLength > 0) {
       //Close overlay after delay
       setTimeout(async function () {
-        await overlay.close({ animate: true });
+        // await overlay.close({ animate: true });
+        const allElements = overlay.element.getElementsByClassName("fade-in");
+        for (let i = 0; i < allElements.length; i++) {
+          allElements[i].classList.remove("fade-in");
+          allElements[i].classList.remove("animation-delay");
+          allElements[i].classList.add("fade-out");
+        }
       }, timerLength);
     }
   }, overlayDelay);
