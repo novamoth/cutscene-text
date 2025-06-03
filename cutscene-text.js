@@ -330,7 +330,7 @@ export class CutsceneOverlay extends Application {
   async fadeAndThenClose(options) {
     if (this.element) {
       console.log(this.element);
-      const elements = this.element.getElementsByClassName("fade-in");
+      const elements = this.element.querySelectorAll(".fade-in");
       console.log(elements.length);
     }
 
