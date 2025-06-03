@@ -337,14 +337,8 @@ export class CutsceneOverlay extends Application {
       });
     }
 
-    console.log(
-      "Cutscene overlay set to:",
-      (this.options.animationDuration ??
-        game.settings.get("cutscene-text", "animationDuration")) * 1000
-    );
     setTimeout(async function () {
-      console.log("Closing Cutscene overlay.");
-      this.close(options);
+      game.cutsceneText.cutsceneOverlay.close(options);
     }, (this.options.animationDuration ??
       game.settings.get("cutscene-text", "animationDuration")) * 1000);
   }
