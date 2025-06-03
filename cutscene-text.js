@@ -329,9 +329,8 @@ export class CutsceneOverlay extends Application {
 
   async fadeAndThenClose(options) {
     if (this.element) {
-      console.log(this.element[0]);
       const textLines = this.element[0].querySelectorAll(".fade-in");
-      elements.forEach((line) => {
+      textLines.forEach((line) => {
         line.classList.remove("fade-in");
         line.classList.remove("animation-delay");
         line.classList.add("fade-out");
