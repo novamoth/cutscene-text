@@ -337,10 +337,12 @@ export class CutsceneOverlay extends Application {
       });
     }
 
-    setTimeout(async function () {
-      game.cutsceneText.cutsceneOverlay.close(options);
-    }, (this.options.animationDuration ??
-      game.settings.get("cutscene-text", "animationDuration")) * 1000);
+    return new Promise((resolve) => {
+      setTimeout(async function () {
+        resolve(close(options));
+      }, (this.options.animationDuration ??
+        game.settings.get("cutscene-text", "animationDuration")) * 1000);
+    });
   }
 
   async close(options) {
