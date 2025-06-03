@@ -332,14 +332,15 @@ export class CutsceneOverlay extends Application {
       const textLines = this.element[0].querySelectorAll(".fade-in");
       textLines.forEach((line) => {
         line.classList.remove("fade-in");
-        line.classList.remove("animation-delay");
+        line.style.removeProperty("animation-delay");
         line.classList.add("fade-out");
       });
     }
 
     setTimeout(async function () {
       this.close(options);
-    }, animationDuration);
+    }, this.options.animationDuration ??
+      game.settings.get("cutscene-text", "animationDuration"));
   }
 
   async close(options) {
