@@ -234,7 +234,7 @@ function displayCutscene(options = {}) {
     if (timerLength > 0) {
       //Close overlay after delay
       setTimeout(async function () {
-        await overlay.close({ animate: true });
+        await overlay.fadeAndThenClose({ animate: true });
       }, timerLength);
     }
   }, overlayDelay);
@@ -327,8 +327,16 @@ export class CutsceneOverlay extends Application {
     return foundry.utils.debounce(this.render.bind(this, force), 100)();
   }
 
+  async fadeAndThenClose(options) {
+    if (this.element) {
+      const elements = this.element.getElementsByClassName("fade-in");
+      console.log(elements.length);
+    }
+
+    this.close(options);
+  }
+
   async close(options) {
-    console.log(this.element);
     super.close(options);
     game.cutsceneText.currentOverlay = null;
   }
