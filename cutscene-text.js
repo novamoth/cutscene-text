@@ -111,6 +111,7 @@ Hooks.once("init", async function () {
     config: true,
     type: Number,
   });
+
   game.settings.register("cutscene-text", "animationDuration", {
     name: "SETTINGS.CutsceneTextAnimationDuration",
     hint: "SETTINGS.CutsceneTextAnimationDurationHint",
