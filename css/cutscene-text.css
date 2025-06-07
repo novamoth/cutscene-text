@@ -23,10 +23,12 @@
   border-bottom: none;
 }
 .textWrapper h2 {
+  position: absolute;
   text-align: center;
   border-bottom: none;
 }
 .textWrapper h3 {
+  position: absolute;
   text-align: center;
   border-bottom: none;
 }
