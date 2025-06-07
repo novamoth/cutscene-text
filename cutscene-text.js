@@ -76,18 +76,27 @@ Hooks.once("init", async function () {
     choices: FontConfig.getAvailableFontChoices(),
   });
 
-  game.settings.register("cutscene-text", "fontSize", {
-    name: "SETTINGS.CutsceneTextFontSize",
-    hint: "SETTINGS.CutsceneTextFontSizeHint",
+  game.settings.register("cutscene-text", "lineOneFontSize", {
+    name: "SETTINGS.CutsceneTextLineOneFontSize",
+    hint: "SETTINGS.CutsceneTextLineOneFontSizeHint",
+    scope: "world",
+    default: "60px",
+    config: true,
+    type: String,
+  });
+
+  game.settings.register("cutscene-text", "lineTwoFontSize", {
+    name: "SETTINGS.CutsceneTextLineTwoFontSize",
+    hint: "SETTINGS.CutsceneTextLineTwoFontSizeHint",
     scope: "world",
     default: "100px",
     config: true,
     type: String,
   });
 
-  game.settings.register("cutscene-text", "subFontSize", {
-    name: "SETTINGS.CutsceneTextSubFontSize",
-    hint: "SETTINGS.CutsceneTextSubFontSizeHint",
+  game.settings.register("cutscene-text", "lineThreeFontSize", {
+    name: "SETTINGS.CutsceneTextLineThreeFontSize",
+    hint: "SETTINGS.CutsceneTextLineThreeFontSizeHint",
     scope: "world",
     default: "30px",
     config: true,
@@ -274,8 +283,9 @@ export class CutsceneOverlay extends Application {
       animationDuration: null,
       animationDelay: null,
       fontFamily: null,
-      fontSize: null,
-      subFontSize: null,
+      lineOneFontSize: null,
+      lineTwoFontSize: null,
+      lineThreeFontSize: null,
       video: null,
       fill: false,
     });
@@ -313,11 +323,15 @@ export class CutsceneOverlay extends Application {
     context.fontFamily =
       this.options.fontFamily ??
       game.settings.get("cutscene-text", "fontFamily");
-    context.fontSize =
-      this.options.fontSize ?? game.settings.get("cutscene-text", "fontSize");
-    context.subFontSize =
-      this.options.subFontSize ??
-      game.settings.get("cutscene-text", "subFontSize");
+    context.lineOneFontSize =
+      this.options.lineOneFontSize ??
+      game.settings.get("cutscene-text", "lineOneFontSize");
+    context.lineTwoFontSize =
+      this.options.lineTwoFontSize ??
+      game.settings.get("cutscene-text", "lineTwoFontSize");
+    context.lineThreeFontSize =
+      this.options.lineThreeFontSize ??
+      game.settings.get("cutscene-text", "lineThreeFontSize");
     context.video = this.options.video;
     context.fill = this.options.fill;
     return context;
